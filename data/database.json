@@ -74,17 +74,6 @@
       "balance": 49474,
       "createdAt": "2023-12-07T04:39:38.383Z",
       "modifiedAt": "2024-03-07T00:07:36.510Z"
-    },
-    {
-      "id": "iauIc_OKX",
-      "uuid": "5e08e8f6-d8ad-45ea-8d11-a99da23af099",
-      "firstName": "Martin Vere",
-      "lastName": "Cihlář",
-      "username": "admin",
-      "password": "$2a$10$zFY4ClyAxKJiccbT45.0oeeosR0f71HW9DvNLzz35GKZzNtLxyAo6",
-      "balance": 0,
-      "createdAt": "2024-07-12T17:50:53.335Z",
-      "modifiedAt": "2024-07-12T17:50:53.335Z"
     }
   ],
   "contacts": [
@@ -264,28 +253,6 @@
       "isDeleted": false,
       "createdAt": "2024-01-26T14:01:01.815Z",
       "modifiedAt": "2024-03-07T08:44:31.174Z"
-    },
-    {
-      "id": "3-gigcq8L",
-      "uuid": "4ff6b43f-9f39-40a4-a956-03871f76021d",
-      "userId": "iauIc_OKX",
-      "bankName": "Česká spořitelna",
-      "accountNumber": "123456789",
-      "routingNumber": "123456789",
-      "isDeleted": false,
-      "createdAt": "2024-07-12T17:51:03.468Z",
-      "modifiedAt": "2024-07-12T17:51:03.468Z"
-    },
-    {
-      "id": "d3i2FaVGF",
-      "uuid": "a6aed2c7-c0d3-40cb-b2d5-44a644d3d3af",
-      "userId": "iauIc_OKX",
-      "bankName": "Česká spořitelna",
-      "accountNumber": "123456781",
-      "routingNumber": "123456781",
-      "isDeleted": false,
-      "createdAt": "2024-07-12T17:51:37.805Z",
-      "modifiedAt": "2024-07-12T17:51:37.805Z"
     }
   ],
   "transactions": [
@@ -9888,18 +9855,6 @@
       "requestResolvedAt": "",
       "createdAt": "2023-11-10T07:15:28.127Z",
       "modifiedAt": "2024-03-07T21:58:09.668Z"
-    },
-    {
-      "id": "0uSDzaHRc",
-      "uuid": "4766b455-afa2-4494-a91d-67fb571388fb",
-      "amount": 42400,
-      "description": "ddada",
-      "receiverId": "GjWovtg2hr",
-      "senderId": "iauIc_OKX",
-      "status": "pending",
-      "requestStatus": "pending",
-      "createdAt": "2024-07-12T17:51:22.430Z",
-      "modifiedAt": "2024-07-12T17:51:22.430Z"
     }
   ],
   "likes": [
@@ -9982,14 +9937,6 @@
       "transactionId": "Duc8WQEFqBCm",
       "createdAt": "2023-04-15T16:27:28.535Z",
       "modifiedAt": "2024-03-07T13:31:05.096Z"
-    },
-    {
-      "id": "4NOVrbCNVv",
-      "uuid": "02a037b6-413e-47d9-9cad-4b10eaee0918",
-      "userId": "iauIc_OKX",
-      "transactionId": "0uSDzaHRc",
-      "createdAt": "2024-07-12T17:51:50.009Z",
-      "modifiedAt": "2024-07-12T17:51:50.009Z"
     }
   ],
   "comments": [
@@ -10082,24 +10029,6 @@
       "transactionId": "b8v79rSvb9A",
       "createdAt": "2023-06-13T02:30:30.394Z",
       "modifiedAt": "2024-03-07T07:43:21.049Z"
-    },
-    {
-      "id": "VRJpNbq5k",
-      "uuid": "5e63b3ef-e1f4-40c9-91ad-998f6ac4ed09",
-      "content": "haha",
-      "userId": "iauIc_OKX",
-      "transactionId": "J5Fd3dlBEBu",
-      "createdAt": "2024-07-12T17:51:12.534Z",
-      "modifiedAt": "2024-07-12T17:51:12.534Z"
-    },
-    {
-      "id": "UUtQTB1ke",
-      "uuid": "ee4c9712-aa12-4d3e-9ad4-e0f637cd41be",
-      "content": "hmm",
-      "userId": "iauIc_OKX",
-      "transactionId": "0uSDzaHRc",
-      "createdAt": "2024-07-12T17:51:49.465Z",
-      "modifiedAt": "2024-07-12T17:51:49.465Z"
     }
   ],
   "notifications": [
@@ -10502,76 +10431,6 @@
       "isRead": false,
       "createdAt": "2024-02-01T18:53:45.699Z",
       "modifiedAt": "2024-03-07T17:13:52.110Z"
-    },
-    {
-      "id": "Q48pvZqhJG",
-      "uuid": "307e6448-b81e-4831-a497-386839db6c86",
-      "userId": "uBmeaz5pX",
-      "transactionId": "J5Fd3dlBEBu",
-      "commentId": "VRJpNbq5k",
-      "isRead": false,
-      "createdAt": "2024-07-12T17:51:12.539Z",
-      "modifiedAt": "2024-07-12T17:51:12.539Z"
-    },
-    {
-      "id": "Eyq6B41VIl",
-      "uuid": "4cf20f54-771c-4ce6-a1cb-fe4ef717ce3e",
-      "userId": "WHjJ4qR2R2",
-      "transactionId": "J5Fd3dlBEBu",
-      "commentId": "VRJpNbq5k",
-      "isRead": false,
-      "createdAt": "2024-07-12T17:51:12.547Z",
-      "modifiedAt": "2024-07-12T17:51:12.547Z"
-    },
-    {
-      "id": "yfaFySttD0",
-      "uuid": "e298ab1f-87ba-4b26-854b-0b7bdfb41a47",
-      "userId": "GjWovtg2hr",
-      "transactionId": "0uSDzaHRc",
-      "status": "requested",
-      "isRead": false,
-      "createdAt": "2024-07-12T17:51:22.437Z",
-      "modifiedAt": "2024-07-12T17:51:22.437Z"
-    },
-    {
-      "id": "h3IDuMwLOP",
-      "uuid": "af5a047b-c0c5-4255-99f8-5c9405c28b38",
-      "userId": "iauIc_OKX",
-      "transactionId": "0uSDzaHRc",
-      "commentId": "UUtQTB1ke",
-      "isRead": false,
-      "createdAt": "2024-07-12T17:51:49.471Z",
-      "modifiedAt": "2024-07-12T17:51:49.471Z"
-    },
-    {
-      "id": "j8cvaATZmA",
-      "uuid": "aafa087a-0322-491e-9b77-fdbe6b92900f",
-      "userId": "GjWovtg2hr",
-      "transactionId": "0uSDzaHRc",
-      "commentId": "UUtQTB1ke",
-      "isRead": false,
-      "createdAt": "2024-07-12T17:51:49.479Z",
-      "modifiedAt": "2024-07-12T17:51:49.479Z"
-    },
-    {
-      "id": "_Xw3lHqvEy",
-      "uuid": "c5161f75-65fc-4835-a094-556da3788f4a",
-      "userId": "iauIc_OKX",
-      "transactionId": "0uSDzaHRc",
-      "likeId": "4NOVrbCNVv",
-      "isRead": false,
-      "createdAt": "2024-07-12T17:51:50.014Z",
-      "modifiedAt": "2024-07-12T17:51:50.014Z"
-    },
-    {
-      "id": "djSZ-05s2c",
-      "uuid": "ea9fd1b2-ab18-444d-93d3-d794d4ed8e1b",
-      "userId": "GjWovtg2hr",
-      "transactionId": "0uSDzaHRc",
-      "likeId": "4NOVrbCNVv",
-      "isRead": false,
-      "createdAt": "2024-07-12T17:51:50.023Z",
-      "modifiedAt": "2024-07-12T17:51:50.023Z"
     }
   ],
   "banktransfers": [

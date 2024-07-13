@@ -52,3 +52,11 @@ amplifytools.xcconfig
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Playwright
+playwright-report/index.html
+tests/e2e/results/.last-run.json
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
