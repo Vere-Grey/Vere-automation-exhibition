@@ -19,6 +19,7 @@ const loginCredentialsCombinations = [
     password: "",
   },
 ];
+const displayedName = `${users.Heath93.firstName} ${users.Heath93.lastName[0]}`;
 
 test.beforeEach(async ({ page }) => {
   await page.goto("/");
@@ -28,15 +29,13 @@ test("user can login via UI", async ({ loc }) => {
   await loc.usernameField.fill(users.Heath93.username);
   await loc.passwordField.fill(userPassword);
   await loc.submitButton.click();
-  await expect(loc.userBalance).toBeVisible();
-  const displayedName = `${users.Heath93.firstName} ${users.Heath93.lastName[0]}`;
+  await expect(loc.userBalance).toBeVisible();  
   await expect(loc.userFullName).toHaveText(displayedName);
 });
 
 test("user can login via API", async ({ page, loc, context }) => {
   authenticateOverAPI({ page, context });
   await expect(loc.userBalance).toBeVisible();
-  const displayedName = `${users.Heath93.firstName} ${users.Heath93.lastName[0]}`;
   await expect(loc.userFullName).toHaveText(displayedName);
 });
 

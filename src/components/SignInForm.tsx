@@ -72,7 +72,7 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
       <CssBaseline />
       <div className={classes.paper}>
         {authState.context?.message && (
-          <Alert data-test="signin-error" severity="error" className={classes.alertMessage}>
+          <Alert severity="error" className={classes.alertMessage}>
             {authState.context.message}
           </Alert>
         )}
@@ -103,7 +103,6 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
                     label="Username"
                     type="text"
                     autoFocus
-                    data-test="signin-username"
                     error={(touched || value !== initialValue) && Boolean(error)}
                     helperText={touched || value !== initialValue ? error : ""}
                     {...field}
@@ -119,7 +118,6 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
                     label="Password"
                     type="password"
                     id="password"
-                    data-test="signin-password"
                     error={touched && value !== initialValue && Boolean(error)}
                     helperText={touched && value !== initialValue && touched ? error : ""}
                     {...field}
@@ -130,7 +128,7 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
                 control={
                   <Field name={"remember"}>
                     {({ field }: FieldProps) => {
-                      return <Checkbox color="primary" data-test="signin-remember-me" {...field} />;
+                      return <Checkbox color="primary" {...field} />;
                     }}
                   </Field>
                 }
@@ -142,7 +140,6 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
-                data-test="signin-submit"
                 disabled={!isValid || isSubmitting}
               >
                 Sign In
@@ -152,9 +149,7 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
                   {/*<Link to="/forgotpassword">Forgot password?</Link>*/}
                 </Grid>
                 <Grid item>
-                  <Link data-test="signup" to="/signup">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
+                  <Link to="/signup">{"Don't have an account? Sign Up"}</Link>
                 </Grid>
               </Grid>
             </Form>
