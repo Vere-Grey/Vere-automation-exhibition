@@ -5,6 +5,10 @@ import { validationResult } from "express-validator";
 import jwt from "express-jwt";
 import jwksRsa from "jwks-rsa";
 
+import unless from 'express-unless';
+console.log('Type of unless:', typeof unless);
+console.log('unless:', unless);
+
 // @ts-ignore
 import OktaJwtVerifier from "@okta/jwt-verifier";
 // @ts-ignore
@@ -91,9 +95,9 @@ const awsCognitoJwtConfig = {
   algorithms: ["RS256"],
 };
 
-export const checkAuth0Jwt = jwt(auth0JwtConfig).unless({ path: ["/testData/*"] });
-export const checkCognitoJwt = jwt(awsCognitoJwtConfig).unless({ path: ["/testData/*"] });
-export const checkGoogleJwt = jwt(googleJwtConfig).unless({ path: ["/testData/*"] });
+export const checkAuth0Jwt = jwt(auth0JwtConfig)//.unless({ path: ["/testData/*"] });
+export const checkCognitoJwt = jwt(awsCognitoJwtConfig)//.unless({ path: ["/testData/*"] });
+export const checkGoogleJwt = jwt(googleJwtConfig)//.unless({ path: ["/testData/*"] });
 
 export const ensureAuthenticated = (req: Request, res: Response, next: NextFunction) => {
   if (req.isAuthenticated()) {

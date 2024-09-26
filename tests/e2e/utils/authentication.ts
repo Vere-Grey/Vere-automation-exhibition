@@ -10,6 +10,8 @@ interface authenticateOverAPIOptions {
 
 const createAuthData = async (loginResponse: Response, username: string, password: string) => {
   const user = (await loginResponse.json()).user;
+  // This is object that UI would store in localStorage as string.
+  // We modify this template by 'user' data from loginResponse and 'username'/'password'
   const authData = {
     actions: [
       {

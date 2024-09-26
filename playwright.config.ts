@@ -14,7 +14,7 @@ export default defineConfig({
   timeout: 10000,
   use: {
     baseURL: 'http://localhost:3000',
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
   },
 
   projects: [
@@ -45,7 +45,7 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: 'yarn dev',
+    command: 'yarn start',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
   },

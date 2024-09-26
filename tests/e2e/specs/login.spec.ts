@@ -34,7 +34,7 @@ test("user can login via UI", async ({ loc }) => {
 });
 
 test("user can login via API", async ({ page, loc, context }) => {
-  authenticateOverAPI({ page, context });
+  await authenticateOverAPI({ page, context });
   await expect(loc.userBalance).toBeVisible();
   await expect(loc.userFullName).toHaveText(displayedName);
 });
