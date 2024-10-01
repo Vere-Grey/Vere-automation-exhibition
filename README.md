@@ -15,8 +15,8 @@ A payment application to demonstrate <strong>real-world</strong> test automation
 
 > 💬 **Note from maintainers**
 >
-> This application is purely for demonstration and educational purposes. Its setup and configuration resemble typical real-world applications, but it's not a full-fledged production system. My aim is to further develop my knowledge of automation testing frameworks and have this repo as example for my future interview. 
-> 
+> This application is purely for demonstration and educational purposes. Its setup and configuration resemble typical real-world applications, but it's not a full-fledged production system. My aim is to further develop my knowledge of automation testing frameworks and have this repo as example for my future interview.
+>
 > I, Martin Vere Cihlar, have not created this application. It originates from this [repo](https://github.com/cypress-io/cypress-realworld-app)
 
 ---
@@ -99,8 +99,8 @@ yarn dev
 ## Additional NPM Scripts
 
 | Script         | Description                                                                                                                                                                       |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| dev            | Starts backend in watch mode and frontend                                                                                                                                         |                                                                                           |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| dev            | Starts backend in watch mode and frontend                                                                                                                                         |     |
 | dev:auth0      | Starts backend in watch mode and frontend; [Uses Auth0 for Authentication](#auth0) > [Read Guide](http://on.cypress.io/auth0)                                                     |
 | dev:okta       | Starts backend in watch mode and frontend; [Uses Okta for Authentication](#okta) > [Read Guide](http://on.cypress.io/okta)                                                        |
 | dev:cognito    | Starts backend in watch mode and frontend; [Uses Cognito for Authentication](#amazon-cognito) > [Read Guide](http://on.cypress.io/amazon-cognito)                                 |
@@ -108,7 +108,7 @@ yarn dev
 | start          | Starts backend and frontend                                                                                                                                                       |
 | types          | Validates types                                                                                                                                                                   |
 | db:seed        | Generates fresh database seeds for json files in /data                                                                                                                            |
-| start:empty    | Starts backend, frontend with empty database seed                                                                                                                     |
+| start:empty    | Starts backend, frontend with empty database seed                                                                                                                                 |
 | tsnode         | Customized ts-node command to get around react-scripts restrictions                                                                                                               |
 | list:dev:users | Provides id and username for users in the dev database                                                                                                                            |
 
@@ -143,4 +143,3 @@ This project is licensed under the terms of the [MIT license](/LICENSE).
 [cognito]: https://aws.amazon.com/cognito
 [awsamplify]: https://amplify.aws
 [google]: https://google.com
-

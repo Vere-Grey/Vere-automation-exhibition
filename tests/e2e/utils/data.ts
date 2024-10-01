@@ -1,12 +1,23 @@
 import seed from '../../../data/database-seed.json';
-import { User } from '../../../src/models/user';
-
+import { DefaultPrivacyLevel, User } from '../../../src/models/user';
 
 const userLookup: { [key: string]: User } = {};
 
+type SeedUser = Omit<User, 'defaultPrivacyLevel' | 'createdAt' | 'modifiedAt'> & {
+  defaultPrivacyLevel: string;
+  createdAt: string;
+  modifiedAt: string;
+};
+
 // Populate the lookup object
-seed.users.forEach((user: any) => {
-  userLookup[user.username] = user;
+seed.users.forEach((user: SeedUser) => {
+  const userWithCorrectType: User = {
+    ...user,
+    defaultPrivacyLevel: user.defaultPrivacyLevel as DefaultPrivacyLevel,
+    createdAt: new Date(user.createdAt),
+    modifiedAt: new Date(user.modifiedAt),
+  };
+  userLookup[userWithCorrectType.username] = userWithCorrectType;
 });
 
 export const users = userLookup;

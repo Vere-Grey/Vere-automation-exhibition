@@ -1,5 +1,14 @@
 {
-  "trailingComma": "es5",
-  "printWidth": 100,
-  "endOfLine": "auto"
+  "plugins": ["prettier-plugin-organize-imports"],
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "singleQuote": true,
+  "quoteProps": "consistent",
+  "trailingComma": "all",
+  "arrowParens": "avoid",
+  "printWidth": 120,
+  "useTabs": false,
+  "semi": true,
+  "tabWidth": 2,
+  "endOfLine": "lf"
 }

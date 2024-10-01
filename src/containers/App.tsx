@@ -13,14 +13,14 @@ import SignUpForm from "../components/SignUpForm";
 import { bankAccountsMachine } from "../machines/bankAccountsMachine";
 import PrivateRoutesContainer from "./PrivateRoutesContainer";
 
-// @ts-ignore
+// @ts-expect-error
 if (window.Cypress) {
   // Expose authService on window for Cypress
-  // @ts-ignore
+  // @ts-expect-error
   window.authService = authService;
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
   },

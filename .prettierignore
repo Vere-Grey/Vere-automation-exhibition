@@ -1,6 +1,11 @@
 # Ignore cache directory for GitLab builds
 /cache
 
+# Ignore product as it's implementation is not relevant to the project
+/backend
+/scripts
+/src
+
 data
 build
 coverage

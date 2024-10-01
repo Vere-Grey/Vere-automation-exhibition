@@ -1,5 +1,5 @@
-import { BrowserContext, Page } from "playwright/test";
-import { userPassword, users } from "./data";
+import { BrowserContext, Page } from 'playwright/test';
+import { userPassword, users } from './data';
 
 interface authenticateOverAPIOptions {
   page: Page;
@@ -15,76 +15,76 @@ const createAuthData = async (loginResponse: Response, username: string, passwor
   const authData = {
     actions: [
       {
-        type: "xstate.stop",
+        type: 'xstate.stop',
         activity: {
-          src: { type: "performLogin" },
-          id: "authentication.loading:invocation[0]",
-          type: "xstate.invoke",
+          src: { type: 'performLogin' },
+          id: 'authentication.loading:invocation[0]',
+          type: 'xstate.invoke',
         },
       },
-      { type: "redirectHomeAfterLogin" },
+      { type: 'redirectHomeAfterLogin' },
     ],
-    activities: { "authentication.loading:invocation[0]": false },
+    activities: { 'authentication.loading:invocation[0]': false },
     meta: {},
     events: [],
-    value: "authorized",
+    value: 'authorized',
     context: {
       user,
     },
     _event: {
-      name: "done.invoke.authentication.loading:invocation[0]",
+      name: 'done.invoke.authentication.loading:invocation[0]',
       data: {
-        type: "done.invoke.authentication.loading:invocation[0]",
+        type: 'done.invoke.authentication.loading:invocation[0]',
         data: {
           user,
         },
       },
-      $$type: "scxml",
-      type: "external",
-      origin: "authentication.loading:invocation[0]",
+      $$type: 'scxml',
+      type: 'external',
+      origin: 'authentication.loading:invocation[0]',
     },
-    _sessionid: "x:0",
+    _sessionid: 'x:0',
     event: {
-      type: "done.invoke.authentication.loading:invocation[0]",
+      type: 'done.invoke.authentication.loading:invocation[0]',
       data: {
         user,
       },
     },
-    historyValue: { current: "authorized", states: {} },
+    historyValue: { current: 'authorized', states: {} },
     history: {
       actions: [
         {
-          type: "xstate.start",
+          type: 'xstate.start',
           activity: {
-            src: { type: "performLogin" },
-            id: "authentication.loading:invocation[0]",
-            type: "xstate.invoke",
+            src: { type: 'performLogin' },
+            id: 'authentication.loading:invocation[0]',
+            type: 'xstate.invoke',
           },
         },
       ],
       activities: {
-        "authentication.loading:invocation[0]": {
-          type: "xstate.start",
+        'authentication.loading:invocation[0]': {
+          type: 'xstate.start',
           activity: {
-            src: { type: "performLogin" },
-            id: "authentication.loading:invocation[0]",
-            type: "xstate.invoke",
+            src: { type: 'performLogin' },
+            id: 'authentication.loading:invocation[0]',
+            type: 'xstate.invoke',
           },
         },
       },
       meta: {},
       events: [],
-      value: "loading",
-      context: { message: "Username or password is invalid" },
+      value: 'loading',
+      context: { message: 'Username or password is invalid' },
       _event: {
-        name: "LOGIN",
-        data: { type: "LOGIN", username, password },
-        $$type: "scxml",
-        type: "external",
+        name: 'LOGIN',
+        data: { type: 'LOGIN', username, password },
+        $$type: 'scxml',
+        type: 'external',
       },
-      _sessionid: "x:0",
-      event: { type: "LOGIN", username, password },
-      historyValue: { current: "loading", states: {} },
+      _sessionid: 'x:0',
+      event: { type: 'LOGIN', username, password },
+      historyValue: { current: 'loading', states: {} },
       children: {},
       done: false,
       changed: true,
@@ -99,16 +99,16 @@ const createAuthData = async (loginResponse: Response, username: string, passwor
 };
 
 const getSessionId = (loginResponse: Response) => {
-  const cookiesHeader = loginResponse.headers.get("set-cookie");
+  const cookiesHeader = loginResponse.headers.get('set-cookie');
   if (!cookiesHeader) {
-    throw new Error("Set-Cookie header not found");
+    throw new Error('Set-Cookie header not found');
   }
-  const cookies = cookiesHeader ? cookiesHeader.split(";") : [];
-  const sessionCookie = cookies.find((cookie: string) => cookie.startsWith("connect.sid"));
+  const cookies = cookiesHeader ? cookiesHeader.split(';') : [];
+  const sessionCookie = cookies.find((cookie: string) => cookie.startsWith('connect.sid'));
   if (!sessionCookie) {
-    throw new Error("Session cookie not found");
+    throw new Error('Session cookie not found');
   }
-  return sessionCookie.split("=")[1];
+  return sessionCookie.split('=')[1];
 };
 
 export const authenticateOverAPI = async ({
@@ -117,23 +117,21 @@ export const authenticateOverAPI = async ({
   username = users.Heath93.username,
   password = userPassword,
 }: authenticateOverAPIOptions) => {
-  const loginResponse = await fetch("http://localhost:3001/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ type: "LOGIN", username, password }),
+  const loginResponse = await fetch('http://localhost:3001/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ type: 'LOGIN', username, password }),
   });
 
   if (!loginResponse.ok) {
-    throw new Error("Login request response was not ok");
+    throw new Error('Login request response was not ok');
   }
 
   const sessionId = getSessionId(loginResponse);
   const authState = await createAuthData(loginResponse, username, userPassword);
   await page.evaluate((authState: string) => {
-    localStorage.setItem("authState", authState);
+    localStorage.setItem('authState', authState);
   }, authState);
-  await context.addCookies([
-    { name: "connect.sid", value: sessionId, path: "/", domain: "localhost" },
-  ]);
+  await context.addCookies([{ name: 'connect.sid', value: sessionId, path: '/', domain: 'localhost' }]);
   await page.reload();
 };
