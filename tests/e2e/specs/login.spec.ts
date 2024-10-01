@@ -29,7 +29,7 @@ test("user can login via UI", async ({ loc }) => {
   await loc.usernameField.fill(users.Heath93.username);
   await loc.passwordField.fill(userPassword);
   await loc.submitButton.click();
-  await expect(loc.userBalance).toBeVisible();  
+  await expect(loc.userBalance).toBeVisible();
   await expect(loc.userFullName).toHaveText(displayedName);
 });
 
@@ -45,6 +45,26 @@ test("invalid password is rejected", async ({ loc }) => {
   await loc.passwordField.fill(invalidPassword);
   await loc.submitButton.click();
   await expect(loc.failedLoginMessage).toHaveText("Username or password is invalid");
+});
+
+test("shows error when login requests fails", async ({ loc, page }) => {
+  await page.route("**/login", (route) => route.fulfill({ status: 500 }));
+  await loc.usernameField.fill(users.Heath93.username);
+  await loc.passwordField.fill(userPassword);
+  await loc.submitButton.click();
+  await expect(loc.failedLoginMessage).toHaveText("Username or password is invalid");
+});
+
+test("shows spinner when login requests takes longer", async ({ loc, page }) => {
+  await page.delayedRoute('**/login', 2000);
+  const loginPromise = page.waitForResponse('**/login');
+  await loc.usernameField.fill(users.Heath93.username);
+  await loc.passwordField.fill(userPassword);
+  await loc.submitButton.click();
+  //TODO: Verify spinner is visible (products does not have spinner yet)
+  await loginPromise;
+  await expect(loc.userBalance).toBeVisible();
+  await expect(loc.userFullName).toHaveText(displayedName);
 });
 
 test.describe("sign in button is disabled when credentials are empty", () => {
