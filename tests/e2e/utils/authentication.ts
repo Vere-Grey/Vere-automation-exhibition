@@ -133,5 +133,5 @@ export const authenticateOverAPI = async ({
     localStorage.setItem('authState', authState);
   }, authState);
   await context.addCookies([{ name: 'connect.sid', value: sessionId, path: '/', domain: 'localhost' }]);
-  await page.reload();
+  await page.reload({ waitUntil: 'commit' });
 };

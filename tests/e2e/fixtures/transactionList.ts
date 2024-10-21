@@ -4,6 +4,7 @@ import { Transaction } from './types';
 export class TransactionItem {
   _expectedData?: Transaction;
   item = () => this.page.locator(`[data-test="transaction-item-${this.expectedData.id}"]`);
+  readonly details = this.page.getByRole('heading', { name: 'Transaction Detail' });
 
   constructor(public page: Page) {}
 

@@ -83,8 +83,9 @@ test.describe('Transaction item', () => {
         body: JSON.stringify(transactionsResponseData),
       });
     });
+    const responsePromise = page.waitForResponse(transactionsApiUrl);
     await authenticateOverAPI({ page, context });
-    await page.waitForResponse(transactionsApiUrl);
+    await responsePromise;
   });
 
   const testCases = [
@@ -101,5 +102,11 @@ test.describe('Transaction item', () => {
       await expect.soft(transactionItem.likes).toHaveText(transactionItem.expectedLikesCount);
       await expect.soft(transactionItem.comments).toHaveText(transactionItem.expectedCommentsCount);
     });
+  });
+
+  test('user can open transaction details', async ({ transactionItem }) => {
+    transactionItem.expectedData = commentsAndLikesTransaction;
+    await transactionItem.item().click();
+    await expect(transactionItem.details).toBeVisible();
   });
 });

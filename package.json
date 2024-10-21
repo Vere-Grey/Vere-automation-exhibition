@@ -125,6 +125,7 @@
     "dev:google": "cross-env VITE_GOOGLE=true NODE_ENV=development concurrently yarn:start:react yarn:start:api:watch",
     "test:e2e": "playwright test",
     "test:e2e:debug": "PWDEBUG=1 playwright test",
+    "test:report": "playwright show-report",
     "predev:cognito": "yarn build:aws-exports-es5",
     "predev:cognito:ci": "yarn copy:mock:awsexports && yarn copy:mock:awsexportses5",
     "copy:mock:awsexports": "ncp scripts/mock-aws-exports.js src/aws-exports.js",
