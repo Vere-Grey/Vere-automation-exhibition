@@ -1,5 +1,5 @@
 import faker from '@faker-js/faker';
-import seed from '../../../data/database-seed.json';
+import seed from '../../../data/database.json';
 import { DefaultPrivacyLevel, User } from '../../../src/models/user';
 
 const userLookup: { [key: string]: User } = {};

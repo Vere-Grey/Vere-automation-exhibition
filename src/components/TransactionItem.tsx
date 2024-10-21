@@ -71,6 +71,7 @@ const TransactionItem: React.FC<TransactionProps> = ({ transaction }) => {
   return (
     <ListItem
       data-test={`transaction-item-${transaction.id}`}
+      data-testid='transaction-item'
       alignItems="flex-start"
       onClick={() => showTransactionDetail(transaction.id)}
     >

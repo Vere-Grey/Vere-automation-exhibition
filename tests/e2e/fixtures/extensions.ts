@@ -1,10 +1,12 @@
 import { Page, test as base } from '@playwright/test';
 import { Locators } from './locators';
 import { extendPage } from './pageExtensions';
+import { TransactionItem } from './transactionList';
 
 type MyFixtures = {
   loc: Locators;
   page: Page;
+  transactionItem: TransactionItem;
 };
 
 const test = base.extend<MyFixtures>({
@@ -14,6 +16,9 @@ const test = base.extend<MyFixtures>({
   },
   loc: async ({ page }, use) => {
     await use(new Locators(page));
+  },
+  transactionItem: async ({ page }, use) => {
+    await use(new TransactionItem(page));
   },
 });
 

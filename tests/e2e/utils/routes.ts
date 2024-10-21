@@ -1,8 +1,8 @@
 import { Route } from 'playwright';
 import { expect } from 'playwright/test';
 
-export const delayRoute = async (route: Route, delayTime: number) => {
-  await new Promise(resolve => setTimeout(resolve, delayTime));
+export const delayRoute = async (route: Route, ms: number) => {
+  await new Promise(resolve => setTimeout(resolve, ms));
   await route.continue();
 };
 

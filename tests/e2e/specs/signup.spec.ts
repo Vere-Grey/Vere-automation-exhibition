@@ -108,7 +108,7 @@ const invalidInputCases = [
 ];
 
 test.beforeEach(async ({ page }) => {
-  await page.goto(signupPageUrl);
+  await page.goto(signupPageUrl, { waitUntil: 'commit' });
 });
 
 test('user can navigate back to login form', async ({ loc, page }) => {

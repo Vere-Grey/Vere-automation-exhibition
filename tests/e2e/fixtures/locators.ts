@@ -24,6 +24,11 @@ export class Locators {
   userFullName: Locator;
   logoutButton: Locator;
   //home
+  transactionItem: Locator;
+  noTransactionsMessage: Locator;
+  createTransactionButton: Locator;
+  listSkeleton: Locator;
+  grid: Locator;
 
   constructor(page: Page) {
     //login
@@ -49,5 +54,10 @@ export class Locators {
     this.userFullName = page.locator('[data-test="sidenav-user-full-name"]');
     this.logoutButton = page.getByRole('button', { name: 'Logout' });
     //home
+    this.transactionItem = page.locator('[data-testid="transaction-item"]');
+    this.noTransactionsMessage = page.getByRole('heading', { name: 'No Transactions' });
+    this.createTransactionButton = page.getByRole('button', { name: 'Create A Transaction' });
+    this.listSkeleton = page.locator('[data-test="list-skeleton"]');
+    this.grid = page.getByLabel('Grid');
   }
 }

@@ -24,7 +24,7 @@ const loginCredentialsCombinations = [
 const displayedName = `${users.Heath93.firstName} ${users.Heath93.lastName[0]}`;
 
 test.beforeEach(async ({ page }) => {
-  await page.goto(homePageUrl);
+  await page.goto(homePageUrl, { waitUntil: 'commit' });
 });
 
 test('user can login via UI', async ({ loc }) => {
