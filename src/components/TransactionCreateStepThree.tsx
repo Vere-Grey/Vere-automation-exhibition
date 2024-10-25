@@ -106,7 +106,6 @@ const TransactionCreateStepThree: React.FC<TransactionCreateStepThreeProps> = ({
               size="small"
               component={RouterLink}
               to="/"
-              data-test="new-transaction-return-to-transactions"
             >
               Return To Transactions
             </Button>
@@ -120,7 +119,6 @@ const TransactionCreateStepThree: React.FC<TransactionCreateStepThreeProps> = ({
                 sendCreateTransaction("RESET");
                 history.push("/transaction/new");
               }}
-              data-test="new-transaction-create-another-transaction"
             >
               Create Another Transaction
             </Button>

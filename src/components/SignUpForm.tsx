@@ -75,7 +75,7 @@ const SignUpForm: React.FC<Props> = ({ authService }) => {
         <div>
           <RWALogo className={classes.logo} />
         </div>
-        <Typography component="h1" variant="h5" data-test="signup-title">
+        <Typography component="h1" variant="h5">
           Sign Up
         </Typography>
         <Formik
@@ -100,7 +100,6 @@ const SignUpForm: React.FC<Props> = ({ authService }) => {
                     label="First Name"
                     type="text"
                     autoFocus
-                    data-test="signup-first-name"
                     error={(touched || value !== initialValue) && Boolean(error)}
                     helperText={touched || value !== initialValue ? error : ""}
                     {...field}
@@ -117,7 +116,6 @@ const SignUpForm: React.FC<Props> = ({ authService }) => {
                     id="lastName"
                     label="Last Name"
                     type="text"
-                    data-test="signup-last-name"
                     error={(touched || value !== initialValue) && Boolean(error)}
                     helperText={touched || value !== initialValue ? error : ""}
                     {...field}
@@ -134,7 +132,6 @@ const SignUpForm: React.FC<Props> = ({ authService }) => {
                     id="username"
                     label="Username"
                     type="text"
-                    data-test="signup-username"
                     error={(touched || value !== initialValue) && Boolean(error)}
                     helperText={touched || value !== initialValue ? error : ""}
                     {...field}
@@ -151,7 +148,6 @@ const SignUpForm: React.FC<Props> = ({ authService }) => {
                     label="Password"
                     type="password"
                     id="password"
-                    data-test="signup-password"
                     error={(touched || value !== initialValue) && Boolean(error)}
                     helperText={touched || value !== initialValue ? error : ""}
                     {...field}
@@ -167,7 +163,6 @@ const SignUpForm: React.FC<Props> = ({ authService }) => {
                     fullWidth
                     label="Confirm Password"
                     id="confirmPassword"
-                    data-test="signup-confirmPassword"
                     type="password"
                     error={(touched || value !== initialValue) && Boolean(error)}
                     helperText={touched || value !== initialValue ? error : ""}
@@ -181,7 +176,6 @@ const SignUpForm: React.FC<Props> = ({ authService }) => {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
-                data-test="signup-submit"
                 disabled={!isValid || isSubmitting}
               >
                 Sign Up

@@ -42,7 +42,6 @@ export const mainListItems = (
       onClick={() => showTemporaryDrawer && toggleDrawer()}
       component={RouterLink}
       to="/"
-      data-test="sidenav-home"
     >
       <ListItemIcon>
         <HomeIcon />
@@ -55,7 +54,6 @@ export const mainListItems = (
       onClick={() => showTemporaryDrawer && toggleDrawer()}
       component={RouterLink}
       to="/user/settings"
-      data-test="sidenav-user-settings"
     >
       <ListItemIcon>
         <PersonIcon />
@@ -68,7 +66,6 @@ export const mainListItems = (
       onClick={() => showTemporaryDrawer && toggleDrawer()}
       component={RouterLink}
       to="/bankaccounts"
-      data-test="sidenav-bankaccounts"
     >
       <ListItemIcon>
         <AccountBalanceIcon />
@@ -81,7 +78,6 @@ export const mainListItems = (
       onClick={() => showTemporaryDrawer && toggleDrawer()}
       component={RouterLink}
       to="/notifications"
-      data-test="sidenav-notifications"
     >
       <ListItemIcon>
         <NotificationsIcon />
@@ -93,7 +89,7 @@ export const mainListItems = (
 
 export const secondaryListItems = (signOutPending: Function) => (
   <div>
-    <ListItem button onClick={() => signOutPending()} data-test="sidenav-signout">
+    <ListItem button onClick={() => signOutPending()}>
       <ListItemIcon>
         <LogoutIcon />
       </ListItemIcon>
@@ -180,7 +176,6 @@ const NavDrawer: React.FC<Props> = ({
 
   return (
     <Drawer
-      data-test="sidenav"
       variant={showTemporaryDrawer ? "temporary" : "persistent"}
       classes={{
         paper: clsx(classes.drawerPaper, !drawerOpen && classes.drawerPaperClose),
@@ -221,7 +216,6 @@ const NavDrawer: React.FC<Props> = ({
                 variant="subtitle2"
                 color="inherit"
                 gutterBottom
-                data-test="sidenav-username"
               >
                 @{currentUser.username}
               </Typography>

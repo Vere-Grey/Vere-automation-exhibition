@@ -70,13 +70,13 @@ const UserOnboardingContainer: React.FC<Props> = ({ authService, bankAccountsSer
   };
 
   return (
-    <Dialog data-test="user-onboarding-dialog" fullScreen={fullScreen} open={dialogIsOpen}>
-      <DialogTitle data-test="user-onboarding-dialog-title">
+    <Dialog fullScreen={fullScreen} open={dialogIsOpen}>
+      <DialogTitle>
         {userOnboardingState.matches("stepOne") && "Get Started with Real World App"}
         {userOnboardingState.matches("stepTwo") && "Create Bank Account"}
         {userOnboardingState.matches("stepThree") && "Finished"}
       </DialogTitle>
-      <DialogContent data-test="user-onboarding-dialog-content">
+      <DialogContent>
         <Box display="flex" alignItems="center" justifyContent="center">
           {userOnboardingState.matches("stepOne") && (
             <>
@@ -118,14 +118,13 @@ const UserOnboardingContainer: React.FC<Props> = ({ authService, bankAccountsSer
               style={{ paddingRight: "80%" }}
               onClick={/* istanbul ignore next */ () => sendAuth("LOGOUT")}
               color="secondary"
-              data-test="user-onboarding-logout"
             >
               Logout
             </Button>
           </Grid>
           <Grid item>
             {!userOnboardingState.matches("stepTwo") && (
-              <Button onClick={() => nextStep()} color="primary" data-test="user-onboarding-next">
+              <Button onClick={() => nextStep()} color="primary">
                 {userOnboardingState.matches("stepThree") ? "Done" : "Next"}
               </Button>
             )}

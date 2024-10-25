@@ -94,7 +94,6 @@ const TransactionDetail: React.FC<TransactionProps> = ({
         variant="h6"
         color="primary"
         gutterBottom
-        data-test="transaction-detail-header"
       >
         Transaction Detail
       </Typography>
@@ -103,7 +102,6 @@ const TransactionDetail: React.FC<TransactionProps> = ({
         direction="row"
         justify="space-between"
         alignItems="center"
-        data-test={`transaction-item-${transaction.id}`}
       >
         <Grid item className={classes.headline}>
           <AvatarGroup className={classes.avatarGroup} max={2}>
@@ -128,7 +126,6 @@ const TransactionDetail: React.FC<TransactionProps> = ({
                 variant="body2"
                 color="textSecondary"
                 gutterBottom
-                data-test="transaction-description"
               >
                 {transaction.description}
               </Typography>
@@ -142,7 +139,7 @@ const TransactionDetail: React.FC<TransactionProps> = ({
       <Grid container direction="row" justify="flex-start" alignItems="center" spacing={2}>
         <Grid item>
           <Grid container direction="row" justify="flex-start" alignItems="center" spacing={2}>
-            <Grid item data-test={`transaction-like-count-${transaction.id}`}>
+            <Grid item data-test={`transaction-like-count`}>
               {transaction.likes ? transaction.likes.length : 0}{" "}
             </Grid>
             <Grid item>
@@ -150,7 +147,7 @@ const TransactionDetail: React.FC<TransactionProps> = ({
                 color="primary"
                 disabled={currentUserLikesTransaction(currentUser, transaction)}
                 onClick={() => transactionLike(transaction.id)}
-                data-test={`transaction-like-button-${transaction.id}`}
+                data-test={`transaction-like-button`}
               >
                 <LikeIcon />
               </IconButton>
@@ -169,7 +166,6 @@ const TransactionDetail: React.FC<TransactionProps> = ({
                           requestStatus: TransactionRequestStatus.accepted,
                         })
                       }
-                      data-test={`transaction-accept-request-${transaction.id}`}
                     >
                       Accept Request
                     </Button>
@@ -183,7 +179,6 @@ const TransactionDetail: React.FC<TransactionProps> = ({
                           requestStatus: TransactionRequestStatus.rejected,
                         })
                       }
-                      data-test={`transaction-reject-request-${transaction.id}`}
                     >
                       Reject Request
                     </Button>

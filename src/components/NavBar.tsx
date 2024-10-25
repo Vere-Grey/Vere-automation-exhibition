@@ -108,13 +108,12 @@ const NavBar: React.FC<NavBarProps> = ({ drawerOpen, toggleDrawer, notifications
     <AppBar position="absolute" className={clsx(classes.appBar, drawerOpen && classes.appBarShift)}>
       <Toolbar className={classes.toolbar}>
         <IconButton
-          data-test="sidenav-toggle"
           edge="start"
           color="inherit"
           aria-label="open drawer"
           onClick={() => toggleDrawer()}
         >
-          <MenuIcon data-test="drawer-icon" />
+          <MenuIcon/>
         </IconButton>
         <Typography
           component="h1"
@@ -122,7 +121,6 @@ const NavBar: React.FC<NavBarProps> = ({ drawerOpen, toggleDrawer, notifications
           color="inherit"
           noWrap
           className={classes.title}
-          data-test="app-name-logo"
         >
           <Link to="/" style={{ color: "#fff", textDecoration: "none" }} component={RouterLink}>
             {xsBreakpoint ? (
@@ -138,7 +136,6 @@ const NavBar: React.FC<NavBarProps> = ({ drawerOpen, toggleDrawer, notifications
           color="inherit"
           component={RouterLink}
           to="/transaction/new"
-          data-test="nav-top-new-transaction"
         >
           <AttachMoneyIcon /> New
         </Button>
@@ -146,11 +143,9 @@ const NavBar: React.FC<NavBarProps> = ({ drawerOpen, toggleDrawer, notifications
           color="inherit"
           component={RouterLink}
           to="/notifications"
-          data-test="nav-top-notifications-link"
         >
           <Badge
             badgeContent={allNotifications ? allNotifications.length : undefined}
-            data-test="nav-top-notifications-count"
             classes={{ badge: classes.customBadge }}
           >
             <NotificationsIcon />

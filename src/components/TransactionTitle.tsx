@@ -32,9 +32,8 @@ const TransactionTitle: React.FC<{
   const classes = useStyles();
 
   return (
-    <Typography color="textSecondary" data-test="transaction-title" className={classes.title} gutterBottom>
+    <Typography color="textSecondary"  className={classes.title} gutterBottom>
       <Typography
-        data-test='transaction-sender'
         className={classes.titleName}
         display="inline"
         component="span"
@@ -42,7 +41,6 @@ const TransactionTitle: React.FC<{
         {transaction.senderName}
       </Typography>
       <Typography
-        data-test='transaction-action'
         display="inline"
         className={classes.titleAction}
         component="span"
@@ -54,7 +52,6 @@ const TransactionTitle: React.FC<{
           : " paid "}
       </Typography>
       <Typography
-        data-test='transaction-receiver'
         className={classes.titleName}
         display="inline"
         component="span"

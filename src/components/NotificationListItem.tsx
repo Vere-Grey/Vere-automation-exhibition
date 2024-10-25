@@ -80,7 +80,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
   }
 
   return (
-    <ListItem data-test={`notification-list-item-${notification.id}`}>
+    <ListItem>
       <ListItemIcon>{listItemIcon!}</ListItemIcon>
       <ListItemText primary={listItemText} />
       {xsBreakpoint && (
@@ -88,7 +88,6 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
           aria-label="mark as read"
           color="primary"
           onClick={() => updateNotification({ id: notification.id, isRead: true })}
-          data-test={`notification-mark-read-${notification.id}`}
         >
           <CheckIcon />
         </IconButton>
@@ -98,7 +97,6 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
           color="primary"
           size="small"
           onClick={() => updateNotification({ id: notification.id, isRead: true })}
-          data-test={`notification-mark-read-${notification.id}`}
         >
           Dismiss
         </Button>

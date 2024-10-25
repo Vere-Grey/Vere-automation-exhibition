@@ -25,14 +25,13 @@ const EmptyList: React.FC<{ entity: string; children?: React.ReactNode }> = ({
         style={{ height: "100%", width: "100%" }}
         spacing={2}
       >
-        <Grid item data-test="empty-list-header">
+        <Grid item>
           <Typography component="h2" variant="h6" color="primary" gutterBottom>
             No {entity}
           </Typography>
         </Grid>
         <Grid item>
-          <Box
-            data-test="empty-list-children"
+          <Box            
             display="flex"
             width={300}
             alignItems="center"

@@ -86,7 +86,6 @@ const TransactionListDateRangeFilter: React.FC<TransactionListDateRangeFilterPro
           color="primary"
           variant="outlined"
           onClick={handleDateRangeClick}
-          data-test="transaction-list-filter-date-range-button"
           label={"Date: ALL"}
           deleteIcon={<ArrowDropDownIcon />}
           onDelete={handleDateRangeClick}
@@ -97,9 +96,8 @@ const TransactionListDateRangeFilter: React.FC<TransactionListDateRangeFilterPro
           color="primary"
           variant="outlined"
           onClick={handleDateRangeClick}
-          data-test="transaction-list-filter-date-range-button"
           label={`Date: ${dateRangeLabel(dateRangeFilters)}`}
-          deleteIcon={<CancelIcon data-test="transaction-list-filter-date-clear-button" />}
+          deleteIcon={<CancelIcon/>}
           onDelete={() => {
             resetDateRange();
           }}
@@ -122,7 +120,6 @@ const TransactionListDateRangeFilter: React.FC<TransactionListDateRangeFilterPro
           className={classes.popover}
         >
           <InfiniteCalendar
-            data-test="transaction-list-filter-date-range"
             width={xsBreakpoint ? window.innerWidth : 350}
             height={xsBreakpoint ? window.innerHeight : 300}
             rowHeight={50}
@@ -152,13 +149,11 @@ const TransactionListDateRangeFilter: React.FC<TransactionListDateRangeFilterPro
           open={dateRangeOpen}
           ModalProps={{ onClose: handleDateRangeClose }}
           anchor="bottom"
-          data-test="date-range-filter-drawer"
         >
-          <Button data-test="date-range-filter-drawer-close" onClick={() => handleDateRangeClose()}>
+          <Button onClick={() => handleDateRangeClose()}>
             Close
           </Button>
           <InfiniteCalendar
-            data-test="transaction-list-filter-date-range"
             width={window.innerWidth}
             height={window.innerHeight - 185}
             rowHeight={50}

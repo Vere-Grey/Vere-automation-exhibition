@@ -27,7 +27,7 @@ const TransactionAmount: React.FC<{
 
   return (
     <Typography
-      data-test={`transaction-amount`}
+      data-test={'transaction-amount'}
       className={
         isRequestTransaction(transaction) ? classes.amountPositive : classes.amountNegative
       }
