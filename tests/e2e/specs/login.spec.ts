@@ -1,6 +1,5 @@
 import { expect, test } from '../fixtures/extensions';
 import { homePageUrl, loginApiUrl, signupPageUrl } from '../fixtures/urls';
-import { authenticateOverAPI } from '../utils/authentication';
 import { userPassword, users } from '../utils/data';
 import { delayRoute } from '../utils/routes';
 
@@ -35,8 +34,8 @@ test('user can login via UI', async ({ loc }) => {
   await expect(loc.userFullName).toHaveText(displayedName);
 });
 
-test('user can login via API', async ({ page, loc, request, context }) => {
-  await authenticateOverAPI({ page, request, context });
+test('user can login via API', async ({ loc, authenticateOverAPI }) => {
+  await authenticateOverAPI({});
   await expect(loc.userBalance).toBeVisible();
   await expect(loc.userFullName).toHaveText(displayedName);
 });
@@ -85,8 +84,8 @@ test('initially sign in button is enabled but login attempt is rejected', async 
   await expect(loc.loginButton).toBeDisabled();
 });
 
-test('user can logout', async ({ page, loc, request, context }) => {
-  await authenticateOverAPI({ page, request, context });
+test('user can logout', async ({ loc, authenticateOverAPI }) => {
+  await authenticateOverAPI({});
   await loc.logoutButton.click();
   await expect(loc.loginHeader).toBeVisible();
   await expect(loc.userBalance).not.toBeVisible();

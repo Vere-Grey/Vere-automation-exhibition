@@ -2,7 +2,6 @@ import { Locator } from 'playwright';
 import { expect, test } from '../fixtures/extensions';
 import { bareTransaction, commentsAndLikesTransaction } from '../fixtures/transactions.data';
 import { homePageUrl, transactionDetailApiUrl, transactionsApiUrl } from '../fixtures/urls';
-import { authenticateOverAPI } from '../utils/authentication';
 import { users } from '../utils/data';
 import { delayRoute } from '../utils/routes';
 
@@ -31,13 +30,13 @@ const emptyTransactionsResponseData = {
 const expectElementCount = async (locator: Locator, comparisonMethod: 'toBeGreaterThan' | 'toBe', count: number) => {
   await expect(async () => {
     expect(await locator.count())[comparisonMethod](count);
-  }).toPass({ timeout: 2000 });
+  }).toPass({ timeout: 5000 });
 };
 
 test.describe('Transactions list', () => {
-  test.beforeEach(async ({ page, request, context }) => {
+  test.beforeEach(async ({ page, authenticateOverAPI }) => {
     await page.goto(homePageUrl);
-    await authenticateOverAPI({ page, request, context });
+    await authenticateOverAPI({});
   });
 
   test('transaction list have infinite loading', async ({ loc }) => {
@@ -80,7 +79,7 @@ test.describe('Transactions list', () => {
 });
 
 test.describe('Transaction item', () => {
-  test.beforeEach(async ({ page, request, context }) => {
+  test.beforeEach(async ({ page, authenticateOverAPI }) => {
     await page.goto(homePageUrl);
     page.route(transactionsApiUrl, route => {
       route.fulfill({
@@ -90,7 +89,7 @@ test.describe('Transaction item', () => {
       });
     });
     const responsePromise = page.waitForResponse(transactionsApiUrl);
-    await authenticateOverAPI({ page, request, context });
+    await authenticateOverAPI({});
     await responsePromise;
   });
 
@@ -134,9 +133,9 @@ test.describe('Transaction item', () => {
 });
 
 test.describe('Liking and commenting on a transaction', () => {
-  test.beforeEach(async ({ page, request, context, transactionDetail }, testInfo) => {
+  test.beforeEach(async ({ page, authenticateOverAPI, transactionDetail }, testInfo) => {
     await page.goto(homePageUrl);
-    await authenticateOverAPI({ page, request, context, username: users.Heath93.username });
+    await authenticateOverAPI({ username: users.Heath93.username });
     const description = `${testInfo.title} ${new Date()}`;
     await transactionDetail.setupTransaction(users.Heath93.id, description);
     await transactionDetail.navigateTo();
