@@ -33,3 +33,8 @@ export const randomUserInput = () => {
     confirmPassword: password,
   };
 };
+export const randomlyChosenUser = (args: { excludeUserId?: string } = {}) => {
+  const usersArray = Object.values(users).filter(user => user.id !== args.excludeUserId);
+  const randomUser = faker.random.arrayElement(usersArray);
+  return randomUser;
+};

@@ -1,4 +1,5 @@
-import { Transaction } from './types';
+import { randomlyChosenUser } from '../utils/data';
+import { PostTransactionPayload, Transaction } from './types';
 
 export const commentsAndLikesTransaction: Transaction = {
   receiverName: 'Lia Rosenbaum',
@@ -17,7 +18,7 @@ export const commentsAndLikesTransaction: Transaction = {
     {
       id: 'bg8F4haR2zc0',
       uuid: '2cdddebc-6a47-437b-ae76-ebd89432b158',
-      userId: '_XblMqbuoP',
+      userId: 'uBmeaz5pX',
       transactionId: '6XY0Ud1i8sp4',
       createdAt: '2023-06-30T22:44:58.232Z',
       modifiedAt: '2024-03-07T15:15:26.116Z',
@@ -27,7 +28,7 @@ export const commentsAndLikesTransaction: Transaction = {
     {
       id: 'O41hnsNiBPe8',
       uuid: '4b5a4df8-ef12-4d50-9061-a9e4bc026204',
-      content: 'labore autem omnis',
+      content: 'awesome comment',
       userId: 'M1ty1gR8B3',
       transactionId: '6XY0Ud1i8sp4',
       createdAt: '2023-06-15T17:58:29.565Z',
@@ -72,3 +73,11 @@ export const bareTransaction: Transaction = {
   createdAt: '2023-08-28T18:54:26.148Z',
   modifiedAt: '2024-03-07T20:38:11.078Z',
 };
+
+export const createPostTransactionPayload = (activeUserId: string, testNote: string): PostTransactionPayload => ({
+  amount: '1',
+  description: testNote,
+  receiverId: randomlyChosenUser({ excludeUserId: activeUserId }).id,
+  senderId: activeUserId,
+  transactionType: 'payment',
+});

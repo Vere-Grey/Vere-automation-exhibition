@@ -24,7 +24,7 @@ const loginCredentialsCombinations = [
 const displayedName = `${users.Heath93.firstName} ${users.Heath93.lastName[0]}`;
 
 test.beforeEach(async ({ page }) => {
-  await page.goto(homePageUrl, { waitUntil: 'commit' });
+  await page.goto(homePageUrl);
 });
 
 test('user can login via UI', async ({ loc }) => {
@@ -35,8 +35,8 @@ test('user can login via UI', async ({ loc }) => {
   await expect(loc.userFullName).toHaveText(displayedName);
 });
 
-test('user can login via API', async ({ page, loc, context }) => {
-  await authenticateOverAPI({ page, context });
+test('user can login via API', async ({ page, loc, request, context }) => {
+  await authenticateOverAPI({ page, request, context });
   await expect(loc.userBalance).toBeVisible();
   await expect(loc.userFullName).toHaveText(displayedName);
 });
@@ -85,8 +85,8 @@ test('initially sign in button is enabled but login attempt is rejected', async 
   await expect(loc.loginButton).toBeDisabled();
 });
 
-test('user can logout', async ({ page, loc, context }) => {
-  await authenticateOverAPI({ page, context });
+test('user can logout', async ({ page, loc, request, context }) => {
+  await authenticateOverAPI({ page, request, context });
   await loc.logoutButton.click();
   await expect(loc.loginHeader).toBeVisible();
   await expect(loc.userBalance).not.toBeVisible();

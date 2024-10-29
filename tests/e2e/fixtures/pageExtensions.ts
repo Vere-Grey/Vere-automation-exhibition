@@ -13,6 +13,7 @@ declare module 'playwright' {
 }
 
 export function extendPage(page: Page) {
+  // See ResponseProperties type for available metadata properties that you can verify
   page.expectApiResponseToBe = async (url, expectedMetadata) => {
     const response = await page.waitForResponse(url);
     for (const key in expectedMetadata) {
@@ -20,6 +21,12 @@ export function extendPage(page: Page) {
       const value = await method();
       expect(value).toEqual(expectedMetadata[key as ResponseProperties]);
     }
+  };
+
+  // Override the page.goto method to have option waitUntil: 'commit' by default to reduce test duration
+  const originalGoto = page.goto.bind(page);
+  page.goto = async (url, options = {}) => {
+    return await originalGoto(url, { waitUntil: 'commit', ...options });
   };
 
   return page;

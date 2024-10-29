@@ -39,3 +39,11 @@ export interface _Comment {
   createdAt: string;
   modifiedAt: string;
 }
+
+export type PostTransactionPayload = {
+  amount: string;
+  description: string;
+  receiverId: string;
+  senderId: string;
+  transactionType: string;
+};

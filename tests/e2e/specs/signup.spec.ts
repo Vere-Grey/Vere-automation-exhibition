@@ -108,7 +108,7 @@ const invalidInputCases = [
 ];
 
 test.beforeEach(async ({ page }) => {
-  await page.goto(signupPageUrl, { waitUntil: 'commit' });
+  await page.goto(signupPageUrl);
 });
 
 test('user can navigate back to login form', async ({ loc, page }) => {
@@ -119,7 +119,7 @@ test('user can navigate back to login form', async ({ loc, page }) => {
   expect(page.url()).toContain(signinPageUrl);
 });
 
-test('user can sign in', async ({ loc, page }) => {
+test('user can sign up', async ({ loc, page }) => {
   const randomUser = randomUserInput();
   await page.route(usersApiUrl, route => expectPayloadToBe(route, randomUser));
   await fillSignupForm(loc, randomUser);

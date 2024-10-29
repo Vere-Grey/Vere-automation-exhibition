@@ -1,14 +1,15 @@
-import { BrowserContext, Page } from 'playwright/test';
+import { APIRequestContext, APIResponse, BrowserContext, Page } from 'playwright/test';
 import { userPassword, users } from './data';
 
 interface authenticateOverAPIOptions {
   page: Page;
+  request: APIRequestContext;
   context: BrowserContext;
   username?: string;
   password?: string;
 }
 
-const createAuthData = async (loginResponse: Response, username: string, password: string) => {
+const createAuthData = async (loginResponse: APIResponse, username: string, password: string) => {
   const user = (await loginResponse.json()).user;
   // This is object that UI would store in localStorage as string.
   // We modify this template by 'user' data from loginResponse and 'username'/'password'
@@ -98,12 +99,12 @@ const createAuthData = async (loginResponse: Response, username: string, passwor
   return JSON.stringify(authData);
 };
 
-const getSessionId = (loginResponse: Response) => {
-  const cookiesHeader = loginResponse.headers.get('set-cookie');
+const getSessionId = (loginResponse: APIResponse) => {
+  const cookiesHeader = loginResponse.headers()['set-cookie'];
   if (!cookiesHeader) {
     throw new Error('Set-Cookie header not found');
   }
-  const cookies = cookiesHeader ? cookiesHeader.split(';') : [];
+  const cookies = cookiesHeader.split(';');
   const sessionCookie = cookies.find((cookie: string) => cookie.startsWith('connect.sid'));
   if (!sessionCookie) {
     throw new Error('Session cookie not found');
@@ -113,17 +114,17 @@ const getSessionId = (loginResponse: Response) => {
 
 export const authenticateOverAPI = async ({
   page,
+  request,
   context,
   username = users.Heath93.username,
   password = userPassword,
 }: authenticateOverAPIOptions) => {
-  const loginResponse = await fetch('http://localhost:3001/login', {
-    method: 'POST',
+  const loginResponse = await request.post('http://localhost:3001/login', {
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ type: 'LOGIN', username, password }),
+    data: JSON.stringify({ type: 'LOGIN', username, password }),
   });
 
-  if (!loginResponse.ok) {
+  if (!loginResponse.ok()) {
     throw new Error('Login request response was not ok');
   }
 
