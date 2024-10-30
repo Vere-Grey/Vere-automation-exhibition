@@ -60,3 +60,4 @@ tests/e2e/results/.last-run.json
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+tests/.auth/

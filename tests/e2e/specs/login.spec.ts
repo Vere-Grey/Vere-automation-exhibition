@@ -22,6 +22,9 @@ const loginCredentialsCombinations = [
 ];
 const displayedName = `${users.Heath93.firstName} ${users.Heath93.lastName[0]}`;
 
+// Reset storage state for this file to avoid start authenticated
+test.use({ storageState: { cookies: [], origins: [] } });
+
 test.beforeEach(async ({ page }) => {
   await page.goto(homePageUrl);
 });

@@ -4,6 +4,9 @@ import { signinPageUrl, signupPageUrl, usersApiUrl } from '../fixtures/urls';
 import { randomUserInput } from '../utils/data';
 import { delayRoute, expectPayloadToBe } from '../utils/routes';
 
+// Reset storage state for this file to avoid start authenticated
+test.use({ storageState: { cookies: [], origins: [] } });
+
 async function fillSignupForm(
   loc: Locators,
   data: { firstName: string; lastName: string; username: string; password: string; confirmPassword: string },

@@ -34,12 +34,8 @@ const expectElementCount = async (locator: Locator, comparisonMethod: 'toBeGreat
 };
 
 test.describe('Transactions list', () => {
-  test.beforeEach(async ({ page, authenticateOverAPI }) => {
+  test('transaction list have infinite loading', async ({ page, loc }) => {
     await page.goto(homePageUrl);
-    await authenticateOverAPI({});
-  });
-
-  test('transaction list have infinite loading', async ({ loc }) => {
     await expectElementCount(loc.transactionItem, 'toBeGreaterThan', 0);
     const initialTransactionCount = await loc.transactionItem.count();
     await loc.transactionItem.last().scrollIntoViewIfNeeded();
@@ -79,7 +75,7 @@ test.describe('Transactions list', () => {
 });
 
 test.describe('Transaction item', () => {
-  test.beforeEach(async ({ page, authenticateOverAPI }) => {
+  test.beforeEach(async ({ page }) => {
     await page.goto(homePageUrl);
     page.route(transactionsApiUrl, route => {
       route.fulfill({
@@ -88,9 +84,7 @@ test.describe('Transaction item', () => {
         body: JSON.stringify(transactionsResponseData),
       });
     });
-    const responsePromise = page.waitForResponse(transactionsApiUrl);
-    await authenticateOverAPI({});
-    await responsePromise;
+    await page.goto(homePageUrl);
   });
 
   const testCases = [
@@ -133,9 +127,7 @@ test.describe('Transaction item', () => {
 });
 
 test.describe('Liking and commenting on a transaction', () => {
-  test.beforeEach(async ({ page, authenticateOverAPI, transactionDetail }, testInfo) => {
-    await page.goto(homePageUrl);
-    await authenticateOverAPI({ username: users.Heath93.username });
+  test.beforeEach(async ({ transactionDetail }, testInfo) => {
     const description = `${testInfo.title} ${new Date()}`;
     await transactionDetail.setupTransaction(users.Heath93.id, description);
     await transactionDetail.navigateTo();

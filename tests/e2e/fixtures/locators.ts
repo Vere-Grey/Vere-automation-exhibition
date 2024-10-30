@@ -29,6 +29,7 @@ export class Locators {
   createTransactionButton: Locator;
   listSkeleton: Locator;
   grid: Locator;
+  banner: Locator;
 
   constructor(page: Page) {
     //login
@@ -59,5 +60,6 @@ export class Locators {
     this.createTransactionButton = page.getByRole('button', { name: 'Create A Transaction' });
     this.listSkeleton = page.locator('[data-test="list-skeleton"]');
     this.grid = page.getByLabel('Grid');
+    this.banner = page.getByRole('banner').getByRole('link');
   }
 }
