@@ -107,7 +107,6 @@ const invalidInputCases = [
   // },
 ];
 
-// Disables the automatic authentication for this test file
 test.use({ startAuthenticated: false });
 
 test.beforeEach(async ({ page }) => {
