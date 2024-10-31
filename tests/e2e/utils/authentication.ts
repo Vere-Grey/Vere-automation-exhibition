@@ -1,12 +1,13 @@
 import { APIRequestContext, APIResponse, BrowserContext, Page } from 'playwright/test';
-import { userPassword, users } from './data';
+import { homePageUrl } from '../fixtures/urls';
+import { userPassword } from './data';
 
 interface authenticateOverAPIOptions {
   page: Page;
   request: APIRequestContext;
   context: BrowserContext;
-  username?: string;
-  password?: string;
+  username: string;
+  password: string;
 }
 
 const createAuthData = async (loginResponse: APIResponse, username: string, password: string) => {
@@ -116,9 +117,10 @@ export const authenticateOverAPI = async ({
   page,
   request,
   context,
-  username = users.Heath93.username,
-  password = userPassword,
+  username,
+  password,
 }: authenticateOverAPIOptions) => {
+  await page.goto(homePageUrl);
   const loginResponse = await request.post('http://localhost:3001/login', {
     headers: { 'Content-Type': 'application/json' },
     data: JSON.stringify({ type: 'LOGIN', username, password }),
@@ -134,5 +136,5 @@ export const authenticateOverAPI = async ({
     localStorage.setItem('authState', authState);
   }, authState);
   await context.addCookies([{ name: 'connect.sid', value: sessionId, path: '/', domain: 'localhost' }]);
-  await page.reload({ waitUntil: 'commit' });
+  await page.reload();
 };
