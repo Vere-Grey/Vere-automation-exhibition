@@ -107,6 +107,8 @@ const invalidInputCases = [
   // },
 ];
 
+test.use({ startAuthenticated: false });
+
 test.beforeEach(async ({ page }) => {
   await page.goto(signupPageUrl);
 });

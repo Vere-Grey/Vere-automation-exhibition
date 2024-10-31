@@ -29,5 +29,11 @@ export function extendPage(page: Page) {
     return await originalGoto(url, { waitUntil: 'commit', ...options });
   };
 
+  // Override the page.reload method to have option waitUntil: 'commit' by default to reduce test duration
+  const originalReload = page.reload.bind(page);
+  page.reload = async (options = {}) => {
+    return await originalReload({ waitUntil: 'commit', ...options });
+  };
+
   return page;
 }

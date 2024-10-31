@@ -1,11 +1,13 @@
 import { Page, test as base } from '@playwright/test';
 import { authenticateOverAPI } from '../utils/authentication';
+import { userPassword, users } from '../utils/data';
 import { Locators } from './locators';
 import { extendPage } from './pageExtensions';
 import { TransactionDetail, TransactionRow } from './transactionList';
 
 type MyFixtures = {
-  authenticateOverAPI: (args: { username?: string; password?: string }) => Promise<void>;
+  user: { username: string; password: string };
+  startAuthenticated: boolean;
   page: Page;
   loc: Locators;
   transactionRow: TransactionRow;
@@ -13,13 +15,22 @@ type MyFixtures = {
 };
 
 const test = base.extend<MyFixtures>({
-  authenticateOverAPI: async ({ page, request, context }, use) => {
-    const authenticate = async (args: { username?: string; password?: string }) =>
-      authenticateOverAPI({ page, request, context, ...args });
-    await use(authenticate);
-  },
-  page: async ({ page }, use) => {
+  user: [
+    {
+      username: users.Heath93.username,
+      password: userPassword,
+    },
+    {
+      option: true,
+    },
+  ],
+  startAuthenticated: true,
+
+  page: async ({ page, request, context, user, startAuthenticated }, use) => {
     const extendedPage = extendPage(page);
+    if (startAuthenticated) {
+      await authenticateOverAPI({ page: extendedPage, request, context, ...user });
+    }
     await use(extendedPage);
   },
   loc: async ({ page }, use) => {

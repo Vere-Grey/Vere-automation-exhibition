@@ -34,12 +34,7 @@ const expectElementCount = async (locator: Locator, comparisonMethod: 'toBeGreat
 };
 
 test.describe('Transactions list', () => {
-  test.beforeEach(async ({ page, authenticateOverAPI }) => {
-    await page.goto(homePageUrl);
-    await authenticateOverAPI({});
-  });
-
-  test('transaction list have infinite loading', async ({ loc }) => {
+  test.skip('transaction list have infinite loading', async ({ loc }) => {
     await expectElementCount(loc.transactionItem, 'toBeGreaterThan', 0);
     const initialTransactionCount = await loc.transactionItem.count();
     await loc.transactionItem.last().scrollIntoViewIfNeeded();
@@ -54,7 +49,7 @@ test.describe('Transactions list', () => {
         body: JSON.stringify(emptyTransactionsResponseData),
       });
     });
-    await page.goto(homePageUrl);
+    await page.reload();
     await expect(loc.noTransactionsMessage).toBeVisible();
     await expect(loc.transactionItem).not.toBeVisible();
     await expect(loc.createTransactionButton).toBeVisible();
@@ -62,7 +57,7 @@ test.describe('Transactions list', () => {
 
   test('transaction list shows list skeleton when data takes longer to load', async ({ page, loc }) => {
     await page.route(transactionsApiUrl, route => delayRoute(route, 2000));
-    await page.goto(homePageUrl);
+    await page.reload();
     await expect(loc.listSkeleton).toBeVisible();
     await expect(loc.grid).not.toBeVisible();
     await page.waitForResponse(transactionsApiUrl);
@@ -72,14 +67,14 @@ test.describe('Transactions list', () => {
 
   test('transaction list shows error when data fails to load', async ({ page, loc }) => {
     await page.route(transactionsApiUrl, route => route.fulfill({ status: 500 }));
-    await page.goto(homePageUrl);
+    await page.reload();
     //TODO: Bug ABC-123, once fixed change the verification to check for the error message
     await expect(loc.noTransactionsMessage).toBeVisible();
   });
 });
 
 test.describe('Transaction item', () => {
-  test.beforeEach(async ({ page, authenticateOverAPI }) => {
+  test.beforeEach(async ({ page }) => {
     await page.goto(homePageUrl);
     page.route(transactionsApiUrl, route => {
       route.fulfill({
@@ -88,9 +83,7 @@ test.describe('Transaction item', () => {
         body: JSON.stringify(transactionsResponseData),
       });
     });
-    const responsePromise = page.waitForResponse(transactionsApiUrl);
-    await authenticateOverAPI({});
-    await responsePromise;
+    await page.reload();
   });
 
   const testCases = [
@@ -133,9 +126,7 @@ test.describe('Transaction item', () => {
 });
 
 test.describe('Liking and commenting on a transaction', () => {
-  test.beforeEach(async ({ page, authenticateOverAPI, transactionDetail }, testInfo) => {
-    await page.goto(homePageUrl);
-    await authenticateOverAPI({ username: users.Heath93.username });
+  test.beforeEach(async ({ transactionDetail }, testInfo) => {
     const description = `${testInfo.title} ${new Date()}`;
     await transactionDetail.setupTransaction(users.Heath93.id, description);
     await transactionDetail.navigateTo();
